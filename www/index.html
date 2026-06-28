@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{width: 100vw;height: 100vh;margin: 0;}
+        table{height: 100%;width: 100%;border-collapse: collapse;border: none;}
+        td{border-bottom: 1px solid #000;border-right: 1px solid #000;}
+        tr:last-child td{border-bottom: none;}
+        tr td:last-child{border-right: none;}
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <script type="module">
+        let rdnb=Math.ceil(Math.random()*16)
+        document.querySelectorAll('td').forEach((a,i)=>{
+            a.addEventListener('click',()=>{
+                if (i==rdnb) {
+                    a.style.backgroundColor='red'
+                    navigator.vibrate([500,100,500])
+                    setTimeout(() => {
+                        location.reload()
+                    }, 4000);
+                }
+                else a.style.backgroundColor='green'
+            })
+        })
+    </script>
+</body>
+</html>
