@@ -40,12 +40,20 @@
         </tr>
     </table>
     <script type="module">
-        let rdnb=Math.ceil(Math.random()*16)
+        import { LocalNotifications } from '@capacitor/local-notifications';
+        let rdnb=Math.floor(Math.random()*16)
         document.querySelectorAll('td').forEach((a,i)=>{
-            a.addEventListener('click',()=>{
+            a.addEventListener('click',async ()=>{
                 if (i==rdnb) {
                     a.style.backgroundColor='red'
                     navigator.vibrate([500,100,500])
+                    await LocalNotifications.schedule({
+                        notifications:[{
+                            title: "걸렸구나!!!!!!!!",
+                            body: "☠☠☠☠☠☠☠☠",
+                            id: 1,
+                    }]
+                    })
                     setTimeout(() => {
                         location.reload()
                     }, 4000);
