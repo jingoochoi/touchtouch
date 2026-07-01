@@ -41,6 +41,22 @@
     </table>
     <script type="module">
         import { LocalNotifications } from '@capacitor/local-notifications';
+        // 스크립트 상단에 추가
+        const requestPermission = async () => {
+            let status = await LocalNotifications.checkPermissions();
+            if (status.display !== 'granted') {
+                await LocalNotifications.requestPermissions();
+            }
+        };
+        requestPermission();
+        // 코드 상단 혹은 스크립트 맨 처음에 추가
+        (async () => {
+            await LocalNotifications.createChannel({
+                id: 'bomb-channel',
+                name: '걸렸구나',
+                importance: 5, // 여기가 핵심! 5여야 플로트(헤드업) 알림이 뜹니다.
+            });
+        })();
         let rdnb=Math.floor(Math.random()*16)
         document.querySelectorAll('td').forEach((a,i)=>{
             a.addEventListener('click',async ()=>{
@@ -52,6 +68,8 @@
                             title: "걸렸구나!!!!!!!!",
                             body: "☠☠☠☠☠☠☠☠",
                             id: 1,
+                            channelId: 'bomb-channel',
+                            sound: 'zombie.wav'
                     }]
                     })
                     setTimeout(() => {
