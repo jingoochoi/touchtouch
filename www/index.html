@@ -58,11 +58,13 @@
         //     });
         // })();
         let rdnb=Math.floor(Math.random()*16)
+        let audio=new Audio('zombie.wav')
         document.querySelectorAll('td').forEach((a,i)=>{
             a.addEventListener('click',async ()=>{
                 if (i==rdnb) {
                     a.style.backgroundColor='red'
                     navigator.vibrate([500,100,500])
+                    audio.play()
                     // await LocalNotifications.schedule({
                     //     notifications:[{
                     //         title: "걸렸구나!!!!!!!!",
